@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:d70/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: info@bootstrap.je
+  token: vault:d70/pipelineUser:token
+  username: bootsbot
+prow:
+  hmacToken: vault:d70/prow:hmacToken

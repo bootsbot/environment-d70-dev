@@ -1,34 +1,76 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  azure: {}
+  clusterName: d70
+  environmentGitOwner: bootsbot
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: jx-mar19
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: europe-west1-d
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: kill-9.uk
+    externalDNS: true
+    namespaceSubDomain: ""
+    tls:
+      email: terry@bootstrap.je
+      enabled: true
+      production: true
+  key: dev
+- ingress:
+    domain: kill-9.uk
+    externalDNS: true
+    namespaceSubDomain: ""
+    tls:
+      email: terry@bootstrap.je
+      enabled: true
+      production: true
+  key: staging
+- ingress:
+    domain: kill-9.uk
+    externalDNS: true
+    namespaceSubDomain: ""
+    tls:
+      email: terry@bootstrap.je
+      enabled: true
+      production: true
+  key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: kill-9.uk
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: terry@bootstrap.je
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://d70-logs-2b64dc05-1251-47cd-9ecd-74061150f42b
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://d70-reports-5da1d7df-d440-4130-bb4f-cd6d6af64e56
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://d70-repository-c7425582-8b7d-4e02-bdc9-76966cf893ef
+vault: {}
+velero: {}
 versionStream:
-  ref: "master"
+  ref: master
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
